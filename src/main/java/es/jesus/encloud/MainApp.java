@@ -5,7 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 
 public class MainApp extends Application {
@@ -15,7 +14,6 @@ public class MainApp extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
         
         Scene scene = new Scene(root, 800, 500);
-        stage.initStyle(StageStyle.TRANSPARENT);
         scene.getStylesheets().add("/styles/Styles.css");
         stage.setTitle("EnCloud");
         stage.setScene(scene);
