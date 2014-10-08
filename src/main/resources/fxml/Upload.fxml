@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="root" prefHeight="327.0" prefWidth="605.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="es.jesus.encloud.controller.UploadController">
+    <children>
+        <HBox spacing="10.0" AnchorPane.leftAnchor="0.0">
+            <children>
+                <Button onAction="#handleAddFileAction" prefWidth="95.0" text="Add Files">
+<graphic><ImageView pickOnBounds="true" preserveRatio="true">
+<image>
+<Image url="@../images/list-add-5.png" />
+</image></ImageView>
+</graphic></Button><Button disable="true" mnemonicParsing="false" prefWidth="95.0" text="Add Folder">
+<graphic><ImageView pickOnBounds="true" preserveRatio="true">
+<image>
+<Image url="@../images/list-add-5.png" />
+</image></ImageView>
+</graphic></Button>
+                <Button mnemonicParsing="false" onAction="#handleRemoveAction" prefWidth="95.0" text="Remove">
+<graphic><ImageView pickOnBounds="true" preserveRatio="true">
+<image>
+<Image url="@../images/list-remove-5.png" />
+</image></ImageView>
+</graphic></Button>
+            </children>
+            <padding>
+                <Insets left="20.0" top="10.0" />
+            </padding>
+        </HBox>
+        <HBox spacing="10.0" AnchorPane.rightAnchor="0.0">
+            <padding>
+                <Insets right="20.0" top="10.0" />
+            </padding>
+        </HBox>
+        <TableView fx:id="fileTable" editable="true" onDragDropped="#handleTableDragDropped" onDragOver="#handleTableDragOver" prefHeight="200.0" prefWidth="397.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="50.0">
+            <columns>
+                <TableColumn maxWidth="70.0" minWidth="70.0" prefWidth="70.0" resizable="false" sortable="false" text="Select">
+                    <graphic>
+                        <CheckBox mnemonicParsing="false" onAction="#handelSelectAllAction" />
+                    </graphic>
+                </TableColumn>
+                <TableColumn editable="false" prefWidth="168.0" text="Name" /><TableColumn editable="false" prefWidth="64.0" text="Type" />
+                <TableColumn editable="false" prefWidth="69.0" text="Size" />
+                <TableColumn editable="false" prefWidth="88.0" text="Progress" />
+            </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+            </columnResizePolicy>
+        </TableView>
+        <ToolBar orientation="VERTICAL" prefHeight="270.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <items>
+                <Label maxWidth="1.7976931348623157E308" text="Compression">
+<graphic><ImageView pickOnBounds="true" preserveRatio="true">
+<image>
+<Image url="@../images/compress.png" />
+</image></ImageView>
+</graphic>
+<padding>
+<Insets top="5.0" />
+</padding></Label>
+                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleZipAction" text="Zip" />
+                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleUnzipAction" text="Unzip" />
+                <Label maxWidth="1.7976931348623157E308" text="Encryption">
+<graphic><ImageView pickOnBounds="true" preserveRatio="true">
+<image>
+<Image url="@../images/document-encrypt-3.png" />
+</image></ImageView>
+</graphic>
+<padding>
+<Insets top="10.0" />
+</padding></Label>
+                <Button id="enc" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleEncryptAction" text="Encrypt">
+                    <tooltip>
+                        <Tooltip text="Encrypt selected files" />
+                    </tooltip>
+                </Button>
+                <Button id="dec" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleEncryptAction" text="Decrypt" /><Label text="Cloud">
+<graphic><ImageView pickOnBounds="true" preserveRatio="true">
+<image>
+<Image url="@../images/svn-commit.png" />
+</image></ImageView>
+</graphic>
+<padding>
+<Insets top="10.0" />
+</padding></Label><Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleGoogleAction" text="Google Drive" /><Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleDropBoxAction" text="Drop Box" />
+            </items>
+        </ToolBar>
+    </children>
+</AnchorPane>

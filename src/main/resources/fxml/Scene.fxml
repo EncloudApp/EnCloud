@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+
+<TabPane tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <tabs>
+        <Tab text="Upload">
+            <content>
+                <fx:include source="Upload.fxml" />
+            </content>
+<graphic><ImageView pickOnBounds="true" preserveRatio="true">
+<image>
+<Image url="@../images/arrow-up-3.png" />
+</image></ImageView>
+</graphic>
+        </Tab>
+        <Tab text="Download">
+            <content>
+
+            </content>
+<graphic><ImageView pickOnBounds="true" preserveRatio="true">
+<image>
+<Image url="@../images/arrow-down-3.png" />
+</image></ImageView>
+</graphic>
+        </Tab>
+    </tabs>
+</TabPane>
