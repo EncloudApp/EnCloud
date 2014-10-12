@@ -8,7 +8,6 @@ import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.googleapis.media.MediaHttpUploader;
 import com.google.api.client.googleapis.media.MediaHttpUploaderProgressListener;
-import com.google.api.client.http.HttpRequestInitializer;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.InputStreamContent;
 import com.google.api.client.json.JsonFactory;
@@ -57,7 +56,7 @@ public class GoogleUploadService extends Task<Void> {
     @Override
     protected Void call() throws Exception {
         try {
-            upload(file, credential);
+            upload();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -94,7 +93,7 @@ public class GoogleUploadService extends Task<Void> {
                 new LocalServerReceiver()).authorize("user");
     }
 
-    public void upload(EncFile file, HttpRequestInitializer credential) throws FileNotFoundException, IOException {
+    private void upload() throws FileNotFoundException, IOException {
         class CustomProgressListener implements MediaHttpUploaderProgressListener {
             @Override
             public void progressChanged(MediaHttpUploader uploader) throws IOException {

@@ -1,6 +1,5 @@
 package es.encloud.controller;
 
-import com.dropbox.core.DbxException;
 import com.google.api.client.auth.oauth2.Credential;
 import es.encloud.controls.CompletedControl;
 import es.encloud.controls.PasswordControl;
@@ -33,8 +32,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -258,9 +255,26 @@ public class UploadController implements Initializable {
     }
 
     @FXML
-    public void handleDropBoxAction(ActionEvent event) throws IOException, DbxException, URISyntaxException {
-        DropboxUploadService db = new DropboxUploadService();
-        db.authenticate();
+    public void handleDropBoxAction(ActionEvent event) throws Exception {
+        // Validation
+        if (!validateFile()) {
+            return;
+        }
+
+        String credential = DropboxUploadService.authenticate();
+
+        ExecutorService executor = Executors.newFixedThreadPool(4, r -> {
+            Thread t = new Thread(r);
+            t.setDaemon(true);
+            return t;
+        });
+        fileList.stream().filter(f -> f.getSelected()).forEach(f -> {
+            DropboxUploadService db = new DropboxUploadService(f, credential);
+            //f.progressProperty().bind(gus.progressProperty());
+            executor.execute(db);
+        });
+
+        event.consume();
     }
 
     @Override
